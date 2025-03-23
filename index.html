@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Presentation sa ITECH 50B</title>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin: 50px 130px;
+				background-color: #cbd5e1;
+			}
+			#game {
+				padding: 20px;
+				border-radius: 25px;
+				background-color: #64748b;
+				box-shadow: 0 4px 15px 2px rgba(0, 0, 0, 0.5);
+			}
+			#game-area {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				margin: 20px 0;
+			}
+			.boxes {
+				display: flex;
+				flex-direction: row;
+				gap: 10px;
+			}
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: none;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #f2f3f4;
+				font-weight: bold;
+				border-radius: 15px;
+				transition: all 0.3s ease;
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center;
+				border: 3px indigo dashed;
+			}
+			.text {
+				font-size: 18px;
+				padding: 5px;
+				border: 2px indigo solid;
+				color: #f2f3f4;
+			}
+			#controls {
+				max-width: 70%;
+				margin: 0 auto;
+			}
+			.btn {
+				display: inline-block;
+				margin: 5px;
+				padding: 10px;
+				font-size: 16px;
+				cursor: pointer;
+				background: #bae6fd;
+				border: none;
+				border-radius: 5px;
+				text-align: center;
+				color: #09090b;
+			}
+			#toggle-box:checked ~ #game-area .box {
+				border: 3px red solid;
+				color: red;
+			}
+			#toggle-id:checked ~ #game-area #ID {
+				border: 3px blue solid;
+				color: blue;
+			}
+			#toggle-element:checked ~ #game-area .boxes div {
+				border-radius: 50px;
+				border: 3px solid indigo;
+			}
+			#toggle-first-child:checked ~ #game-area .box:first-child {
+				color: red;
+				scale: 2;
+				font-size: 2em;
+				border: 2px red dashed;
+				background-color: none;
+			}
+			#toggle-last-child:checked ~ #game-area .box:last-child {
+				color: blue;
+				scale: 2;
+				font-size: 2em;
+				border: 2px blue dashed;
+				background-color: none;
+			}
+			#toggle-nth-child:checked ~ #game-area .box:nth-child(3) {
+				color: yellow;
+				scale: 2;
+				font-size: 2em;
+				border: 2px yellow dashed;
+				background-color: none;
+			}
+			#toggle-second-child:checked ~ #game-area .box:nth-child(2) {
+				color: orange;
+				scale: 2;
+				font-size: 2em;
+				border: 2px orange dashed;
+				background-color: none;
+			}
+			#toggle-fourth-child:checked ~ #game-area .box:nth-child(4) {
+				color: green;
+				scale: 2;
+				font-size: 2em;
+				border: 2px green dashed;
+				background-color: none;
+			}
+			#toggle-universal:checked ~ #game-area .boxes * {
+				font-family: "Courier New", Courier, monospace;
+				animation: rotate 10s linear infinite;
+				transition: 0.5s;
+				border-radius: 50%;
+			}
+			#toggle-hover-scale:checked ~ #game-area .box:hover {
+				transform: scale(1.2);
+				transition: 0.3s;
+			}
+			#toggle-hover-color:checked ~ #game-area .box:hover {
+				color: orange;
+				background-color: black;
+				background-blend-mode: darken;
+				transition: 0.3s;
+				border: black solid;
+				font-size: 2em;
+			}
+			#toggle-hover-rotate:checked ~ #game-area .box:hover {
+				transform: rotate(45deg);
+				transition: 0.3s;
+			}
+			#toggle-paragraph:checked ~ #game-area .text {
+				color: purple;
+				font-weight: bold;
+				font-size: 1.25em;
+				border: dashed indigo;
+				font-family: "Courier New", Courier, monospace;
+			}
+			#toggle-adjacent:checked ~ #game-area .box:first-child + .box {
+				background-color: gray;
+				background-blend-mode: soft-light;
+				color: black;
+				transition: 0.3s;
+			}
+			#toggle-general-sibling:checked ~ #game-area .box:first-child ~ .box {
+				border: solid blue;
+				color: blue;
+			}
+			#toggle-child:checked ~ #game-area > p {
+				scale: 2;
+			}
+			.toggl:checked + .btn {
+				background: red;
+			}
+
+			@keyframes rotate {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="game">
+			<h1>TARA LARO TAYO</h1>
+			<p>Amazon 1.0 with Chano</p>
+
+			<input type="checkbox" id="toggle-box" hidden />
+			<input type="checkbox" id="toggle-id" hidden />
+			<input type="checkbox" id="toggle-element" hidden />
+			<input type="checkbox" id="toggle-first-child" hidden />
+			<input type="checkbox" id="toggle-second-child" hidden />
+			<input type="checkbox" id="toggle-nth-child" hidden />
+			<input type="checkbox" id="toggle-fourth-child" hidden />
+			<input type="checkbox" id="toggle-last-child" hidden />
+			<input type="checkbox" id="toggle-universal" hidden />
+			<input type="checkbox" id="toggle-hover-scale" hidden />
+			<input type="checkbox" id="toggle-hover-color" hidden />
+			<input type="checkbox" id="toggle-hover-rotate" hidden />
+			<input type="checkbox" id="toggle-paragraph" hidden />
+			<input type="checkbox" id="toggle-adjacent" hidden />
+			<input type="checkbox" id="toggle-general-sibling" hidden />
+			<input type="checkbox" id="toggle-child" hidden />
+
+			<div id="game-area">
+				<div class="boxes">
+					<div
+						class="box"
+						id="ID"
+						style="background-image: url('img/demy.jpg')"
+					>
+						DEMY
+					</div>
+					<div class="box" style="background-image: url('img/jayson.jpg')">
+						JAYSON
+					</div>
+					<div class="box" style="background-image: url('img/tayog.jpg')">
+						TAYOG
+					</div>
+					<div class="box" style="background-image: url('img/chano.jpg')">
+						CHANO
+					</div>
+					<div class="box" style="background-image: url('img/owen.jpg')">
+						OWEN
+					</div>
+				</div>
+				<p class="text">This is a test paragraph. Ang pogi ni tayog.</p>
+			</div>
+
+			<div id="controls">
+				<label for="toggle-box" class="btn">Class Selector</label>
+				<label for="toggle-id" class="btn">ID Selector</label>
+				<label for="toggle-element" class="btn">Element Selector</label>
+				<label for="toggle-first-child" class="btn">First Box</label>
+				<label for="toggle-second-child" class="btn">Second Box</label>
+				<label for="toggle-nth-child" class="btn">Third Box</label>
+				<label for="toggle-fourth-child" class="btn">Fourth Box</label>
+				<label for="toggle-last-child" class="btn">Last Box</label>
+				<label for="toggle-universal" class="btn">Universal Selector</label>
+				<label for="toggle-hover-scale" class="btn">Hover Scale</label>
+				<label for="toggle-hover-color" class="btn">Hover Color</label>
+				<label for="toggle-hover-rotate" class="btn">Hover Rotate</label>
+				<label for="toggle-paragraph" class="btn">Style Paragraph</label>
+				<label for="toggle-adjacent" class="btn">Adjacent Sibling</label>
+				<label for="toggle-general-sibling" class="btn">General Sibling</label>
+				<label for="toggle-child" class="btn">Child</label>
+			</div>
+		</div>
+		<script>
+			document.querySelectorAll(".btn").forEach((button) => {
+				const checkbox = document.getElementById(button.htmlFor);
+
+				if (checkbox) {
+					checkbox.addEventListener("change", function () {
+						button.style.background = this.checked ? "#26577a" : "#bae6fd";
+						button.style.color = this.checked ? "#f2f3f4" : "#09090b";
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
